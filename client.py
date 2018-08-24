@@ -9,8 +9,7 @@ Socket.connect((host, port))
 
 connection = True
 while connection:
-    inputNumber = input("Enter a number or "
-                        "'exit' to close the connection: ")
+    inputNumber = input("Enter a number or 'exit' to close the connection: ")
     if inputNumber != '':
         Socket.send(bytes(inputNumber, 'utf-8'))
 
