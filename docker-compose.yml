@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  server:
+    build: ./sources
+    volumes:
+      - ./sources:/home/undadasea/myServer
+    ports:
+      - 8888:8881
+    networks:
+      mynetwork:
+        ipv4_address: 173.17.1.4
+  client:
+    image: client_image:latest
+    ports:
+      - 8881:8881
+    depends_on:
+      - server
+    environment:
+      PG_HOST: server
+      PG_PORT: 8888
+    networks:
+      mynetwork:
+        ipv4_address: 173.17.1.3
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 173.17.1.0/12
+          
+
+
